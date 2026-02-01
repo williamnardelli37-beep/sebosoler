@@ -1,0 +1,159 @@
+/* 1. FUNDAMENTOS DE ELEGÂNCIA */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased; /* Deixa as fontes mais nítidas */
+}
+
+:root {
+    --ouro: #d4af37;
+    --marrom-escuro: #3e2723;
+    --marrom-medio: #5d4037;
+    --bege-claro: #fdf5e6;
+    --sombra-premium: 0 20px 40px rgba(0,0,0,0.2);
+    --transicao: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+    background-color: var(--bege-claro);
+    /* Textura sutil de papel de linho */
+    background-image: url("https://www.transparenttextures.com/patterns/linen.png");
+    color: var(--marrom-escuro);
+    font-family: 'Inter', 'Georgia', serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* 2. HIERARQUIA VISUAL (CLAREZA) */
+h1 {
+    text-align: center;
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    color: var(--marrom-escuro);
+    font-size: clamp(2.2rem, 10vw, 4rem);
+    font-weight: 900;
+    padding: 60px 20px 10px;
+    letter-spacing: -1px;
+}
+
+/* Frases de Indução e Confiança */
+.venda, .tess {
+    color: var(--marrom-medio);
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 4vw, 1.6rem);
+    max-width: 800px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Detalhe de luxo: Divisor em ouro */
+.venda::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: var(--ouro);
+    margin: 20px auto;
+}
+
+/* 3. VITRINE IMERSIVA (INDUÇÃO À COMPRA) */
+.promo-container, .tu-container {
+    overflow: hidden;
+    width: 100%;
+    padding: 40px 0;
+    /* Gradiente suave para focar nos livros */
+    background: linear-gradient(to bottom, transparent, rgba(93, 64, 55, 0.03), transparent);
+}
+
+.promo, .tu {
+    display: flex;
+    width: max-content;
+    gap: 30px;
+    animation: rolarInfinito 40s linear infinite; /* Mais lento transmite elegância */
+}
+
+.promo img, .tu img {
+    width: clamp(160px, 35vw, 220px); 
+    height: auto;
+    aspect-ratio: 2 / 3; 
+    object-fit: cover;
+    border-radius: 4px 10px 10px 4px;
+    /* Sombra projetada para parecer que o livro está flutuando */
+    box-shadow: 10px 15px 25px rgba(0,0,0,0.25);
+    transition: var(--transicao);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Efeito de destaque ao interagir */
+.promo img:hover, .tu img:hover {
+    transform: scale(1.08) translateY(-15px) rotate(2deg);
+    box-shadow: 20px 30px 50px rgba(0,0,0,0.3);
+}
+
+/* 4. O BOTÃO PERFEITO (CONFIANÇA E AÇÃO) */
+.butt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    gap: 15px;
+}
+
+.butt button {
+    background: var(--marrom-escuro);
+    border: none;
+    border-radius: 4px; /* Bordas levemente arredondadas para seriedade */
+    padding: 0;
+    cursor: pointer;
+    transition: var(--transicao);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(62, 39, 35, 0.3);
+}
+
+.butt button a {
+    display: block;
+    padding: 22px 60px;
+    color: var(--ouro);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(16px, 5vw, 20px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Efeito de Preenchimento de Ouro no Hover */
+.butt button:hover {
+    background: var(--marrom-medio);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+/* Mensagem de Segurança abaixo do botão (Gera Confiança) */
+.butt::after {
+    content: '🔒 Compra 100% Segura • Entrega Imediata';
+    font-size: 12px;
+    color: var(--marrom-medio);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 5. ANIMAÇÃO E RESPONSIVIDADE */
+@keyframes rolarInfinito {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Pausa a animação quando o usuário quer ver o livro (Clareza) */
+.promo:hover, .tu:hover {
+    animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .promo, .tu { gap: 15px; }
+    .butt button a { padding: 18px 40px; }
+}

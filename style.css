@@ -1,0 +1,547 @@
+/* --- 1. CONFIGURAÇÕES GERAIS E FONTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;500&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding-top: 70px; /* Espaço para a navbar fixa */
+    background-color: #f8fafc; /* Fundo limpo estilo Apple */
+    color: #1d1d1f;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- 2. NAVBAR (RESPONSIVA PC E CELULAR) --- */
+.navbar-apple {
+    width: 100%;
+    min-height: 48px;
+    background-color: rgba(253, 251, 247, 0.95);
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+}
+
+.butt {
+    display: flex;
+    gap: 30px; 
+    flex-wrap: wrap; /* Faz os links dobrarem se não couberem no celular */
+    justify-content: center;
+    padding: 10px;
+}
+
+.butt a {
+    color: #2c1e14;
+    text-decoration: none !important;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+.butt a:hover { opacity: 1; color: #8b4513; }
+
+/* --- 3. HEADER (SEJA BEM-VINDO) --- */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 10%;
+    background-color: #fdfbf7;
+}
+
+.header-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    color: #2c1e14;
+    margin: 0;
+}
+
+.header-container h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    color: #8b4513;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- 4. SEÇÃO DE PRODUTOS E CARROSSEL --- */
+.produtos {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.produtos h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: #2c1e14;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.produtos h2::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 3px;
+    background-color: #8b4513;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+.carrossel-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.imgg {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    gap: 25px;
+    padding: 20px 60px;
+    scrollbar-width: none;
+}
+
+.imgg::-webkit-scrollbar { display: none; }
+
+.imgg img {
+    flex: 0 0 220px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+    transition: 0.4s ease;
+    scroll-snap-align: center;
+}
+
+.imgg img:hover { transform: scale(1.05); }
+
+/* --- 5. SETAS DECORATIVAS (CENTRALIZADAS) --- */
+.seta-decorativa {
+    position: absolute;
+    top: 50%;
+    font-size: 3.5rem;
+    color: rgba(0, 0, 0, 0.3);
+    z-index: 25;
+    pointer-events: none;
+    user-select: none;
+}
+
+.seta-esq { left: 15px; animation: moverEsq 1.5s infinite ease-in-out; }
+.seta-dir { right: 15px; animation: moverDir 1.5s infinite ease-in-out; }
+
+@keyframes moverEsq {
+    0%, 100% { transform: translate(0, -50%); opacity: 0.3; }
+    50% { transform: translate(-15px, -50%); opacity: 0.8; }
+}
+
+@keyframes moverDir {
+    0%, 100% { transform: translate(0, -50%); opacity: 0.3; }
+    50% { transform: translate(15px, -50%); opacity: 0.8; }
+}
+
+/* --- 6. GRID DE GÊNEROS (BOTÕES) --- */
+.botoes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn-genero {
+    position: relative;
+    height: 180px;
+    border-radius: 25px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    text-decoration: none !important;
+}
+
+.btn-genero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.btn-genero::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 70%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    z-index: 2;
+}
+
+.btn-genero:hover::before { transform: scale(1.1); opacity: 1; }
+
+.btn-genero span {
+    position: relative;
+    z-index: 3;
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* --- 7. BANNER MUNDO INFANTIL --- */
+.admin-banner {
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 50px;
+    background: linear-gradient(135deg, #e0f2fe 0%, #fce7f3 100%);
+    border-radius: 45px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    border: 4px solid #ffffff;
+}
+
+.admin-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.admin-content h1 {
+    flex: 1;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #0369a1;
+    margin: 0;
+    text-align: left;
+}
+
+.admin-description {
+    flex: 1.2;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #475569;
+    text-align: right;
+    font-weight: 500;
+}
+
+/* --- 8. ANIMAÇÕES DE ENTRADA --- */
+.efeito-entrada { animation: surgindo 1.2s ease-out forwards; }
+.efeito-entrada-atraso { animation: surgindo 1.2s ease-out 0.5s backwards; }
+
+@keyframes surgindo {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 9. MEDIA QUERIES (ADAPTAÇÃO CELULAR) --- */
+@media (max-width: 768px) {
+    body { padding-top: 80px; }
+    
+    .navbar-apple { height: auto; padding: 5px 0; }
+    .butt { gap: 15px; }
+    .butt a { font-size: 10px; }
+
+    .header-container { flex-direction: column; text-align: center; gap: 15px; }
+
+    .admin-content { flex-direction: column; text-align: center; }
+    .admin-content h1, .admin-description { text-align: center; }
+
+    .imgg { padding: 20px 40px; }
+    .imgg img { flex: 0 0 180px; height: 250px; }
+    
+    .seta-decorativa { font-size: 2.2rem; }
+}
+
+/* LINKS DAS IMAGENS */
+.romance::before { background-image: url(romance\ .jpg); }
+.suspense::before { background-image: url(suspence\ .webp); }
+.ficcao::before { background-image: url(ficçao.WebP); }
+.historia::before { background-image: url(historia\ .WebP); }
+.biografia::before { background-image: url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?q=80&w=400'); }
+.poesia::before { background-image: url('mangg.jpeg'); }
+.hqs::before { background-image: url('https://images.unsplash.com/photo-1588497859490-85d1c17db96d?q=80&w=400'); }
+.autoajuda::before { background-image: url(auto.WebP); }
+.infantil::before { background-image: url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=400'); }
+.raridades::before { background-image: url(adimi.WebP); }
+/* --- SEÇÃO DE PRODUTOS --- */
+.produtos {
+    text-align: center;
+    padding: 60px 20px 40px; /* Respiro: 60px topo, 20px lados, 40px baixo */
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: transparent; /* Mantém a cor do corpo do site */
+}
+
+/* O Título "Nossos Produtos Destaques" */
+.produtos h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Diminui no celular, aumenta no PC */
+    color: #2c1e14;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    position: relative;
+    display: inline-block; /* Importante para a linha abaixo centralizar */
+}
+
+/* A Linha Decorativa (Estilo Sebo Elegante) */
+.produtos h2::after {
+    content: '';
+    display: block;
+    width: 60%;         /* Linha ocupa 60% da largura do texto */
+    height: 3px;        /* Espessura da linha */
+    background-color: #8b4513; /* Cor madeira/couro */
+    margin: 10px auto 0; /* Centraliza a linha e dá 10px de distância do texto */
+    border-radius: 5px;
+}
+
+/* Ajuste do Container do Carrossel que fica dentro de Produtos */
+.produtos .carrossel-container {
+    margin-top: 40px; /* Afasta o carrossel do título */
+    position: relative;
+    width: 100%;
+}
+
+/* --- AJUSTE PARA CELULAR --- */
+@media (max-width: 768px) {
+    .produtos {
+        padding: 40px 10px 20px;
+    }
+    
+    .produtos h2 {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+
+    .produtos h2::after {
+        width: 40%; /* Linha menor no celular para um visual mais clean */
+        height: 2px;
+    }
+}
+/* Estilo do título/texto de venda */
+.venda {
+    color: #8b4513;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 10px;
+    font-size: 1.5rem; /* Ajusta conforme o tamanho da tela */
+}
+
+/* Container principal */
+.promo-container {
+    overflow: hidden;
+    width: 100%;
+    background: transparent;
+    padding: 20px 0;
+    position: relative;
+    /* Toque suave no mobile */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* A "faixa" que carrega os itens */
+.promo {
+    display: flex;
+    width: max-content; 
+    gap: 30px;
+    animation: rolarInfinito 30s linear infinite;
+    will-change: transform; /* Melhora a performance da animação */
+}
+
+/* Estilo das Imagens */
+.promo img {
+    width: 220px;
+    height: 300px;
+    object-fit: cover; /* 'cover' costuma ficar melhor para capas, use 'contain' se não quiser cortes */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Pausar ao interagir */
+.promo-container:hover .promo {
+    animation-play-state: paused;
+}
+
+/* Efeito Hover */
+.promo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* --- ANIMAÇÃO --- */
+@keyframes rolarInfinito {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Para o loop ser perfeito, os itens dentro do HTML devem estar duplicados */
+        transform: translateX(-50%); 
+    }
+}
+
+/* --- RESPONSIVIDADE (Mobile e Tablets) --- */
+@media (max-width: 768px) {
+    .venda {
+        font-size: 1.2rem;
+    }
+
+    .promo {
+        gap: 15px; /* Reduz o espaço entre itens no celular */
+        animation-duration: 20s; /* Velocidade ajustada */
+    }
+
+    .promo img {
+        width: 150px; /* Tamanho mais amigável para telas pequenas */
+        height: 210px;
+    }
+}
+
+/* Ajuste para telas muito pequenas (iPhone SE, etc) */
+@media (max-width: 480px) {
+    .promo img {
+        width: 130px;
+        height: 180px;
+    }
+}
+/* 1. TRAVA DE SEGURANÇA GLOBAL 
+   Essencial para impedir que o site tenha rolagem lateral (o erro do "arraste")
+*/
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. ESTILO DO TÍTULO (Classe .venda) */
+.venda {
+    color: #8b4513;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+/* 3. CONTAINER DA VITRINE 
+   O 'overflow: hidden' aqui corta qualquer conteúdo que sair da largura da tela.
+*/
+.promo-container {
+    overflow: hidden;
+    width: 100%;
+    background: transparent;
+    padding: 20px 0;
+    position: relative;
+    /* Trava o toque lateral, permitindo apenas o scroll vertical da página */
+    touch-action: pan-y;
+}
+
+/* 4. A FAIXA DE IMAGENS (CARROSSEL) */
+.promo {
+    display: flex;
+    width: max-content; 
+    gap: 30px;
+    animation: rolarInfinito 30s linear infinite;
+    will-change: transform; /* Melhora a performance em celulares */
+}
+
+/* 5. ESTILO DOS ITENS (IMAGENS/LIVROS) */
+.promo img {
+    width: 220px;
+    height: 300px;
+    object-fit: contain; /* Mantém a proporção do livro sem cortar */
+    background-color: white;
+    
+    /* Design das bordas e sombra */
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    
+    flex-shrink: 0; /* Impede que o item seja esmagado */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Pausar ao passar o mouse (PC) */
+.promo-container:hover .promo {
+    animation-play-state: paused;
+}
+
+/* Efeito de destaque no hover (PC) */
+.promo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* --- ANIMAÇÃO DA ROLAGEM --- */
+@keyframes rolarInfinito {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move metade do conteúdo para criar o loop contínuo */
+        transform: translateX(-50%); 
+    }
+}
+
+/* 6. AJUSTES PARA TELEFONE (RESPONSIVIDADE) 
+   Aqui resolvemos o bug específico do mobile
+*/
+@media (max-width: 768px) {
+    .venda {
+        font-size: 1.4rem;
+    }
+
+    .promo-container {
+        padding: 10px 0;
+    }
+
+    .promo {
+        gap: 15px; /* Reduz espaço no mobile */
+        /* Animação ligeiramente mais rápida para telas menores */
+        animation-duration: 20s; 
+    }
+
+    .promo img {
+        width: 150px; /* Reduz o tamanho da imagem para não pesar no layout */
+        height: 220px;
+        border-radius: 10px;
+    }
+}
+
+/* Ajuste fino para celulares muito pequenos (ex: iPhone SE) */
+@media (max-width: 400px) {
+    .promo img {
+        width: 130px;
+        height: 190px;
+    }
+}
